@@ -4,6 +4,7 @@ import subprocess
 import webbrowser
 import pyowm
 import speech_recognition as sr
+import g2
 
 # Создаем объект для распознавания речи
 recognizer = sr.Recognizer()
@@ -34,7 +35,6 @@ def conet_text(audio):
         text = ""
         print("Я не зрозумів, що ти сказав")
     except sr.RequestError:
-        # Ошибка подключения к сервису Google
         text = ""
         print("Помилка підключення до сервісу розпізнавання")
     # Возвращаем результат (строку с текстом или пустую строку)
@@ -66,6 +66,9 @@ def process_voice_command(text):
         weather = observation.weather
         weather2 = "температура (грфдусицельсий)" + str(int(weather.temperature("celsius")["temp"])) + "\n"
         print(weather2)
+    elif "джарвес" in text.lower():
+        recult = g2.generate(text)
+        print(recult)
 
 # главна вунксия програми
 def main():
