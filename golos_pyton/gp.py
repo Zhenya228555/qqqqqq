@@ -1,13 +1,15 @@
-import speech_recognition as sr
+# создаем голосового помошника 
+# пидключаемо модули
 import subprocess
 import webbrowser
 import pyowm
+import speech_recognition as sr
 
 # Создаем объект для распознавания речи
 recognizer = sr.Recognizer()
-
+#ключ для погоди
 owm = pyowm.OWM('5817d6a145c443107efc34417e35c2ac')
-
+#падключеня микрофона
 def voce_input():
     # Используем микрофон в качестве источника звука
     with sr.Microphone() as source:
@@ -20,7 +22,7 @@ def voce_input():
 
 
 
-
+#підключеня розпізнаваня голосу та язика
 def conet_text(audio):
     try:
         # Преобразуем речь в текст с помощью Google Speech Recognition
@@ -37,7 +39,7 @@ def conet_text(audio):
         print("Помилка підключення до сервісу розпізнавання")
     # Возвращаем результат (строку с текстом или пустую строку)
     return text
-
+#пошук та выдкритя програм та сайтыв
 def process_voice_command(text):
     if "привіт" in text.lower():
         print("привіт як справи")
@@ -46,7 +48,7 @@ def process_voice_command(text):
     elif "відкрий калькулятор" in text.lower():
         subprocess.call(['calc'])
     elif "roblox" in text.lower():
-        subprocess.call(['C:/Users/LOGIKA/AppData/Local/Roblox/Versions/version-c1ac69007bdc4e48/RobloxPlayerBeta.exe'])
+        subprocess.call(['C:/Users/Евгеній/AppData/Local/Roblox/Versions/version-c1ac69007bdc4e48/RobloxPlayerBeta.exe'])
     elif "youtube" in text.lower():
         webbrowser.open("https://www.youtube.com/?app=desktop&gl=UA&hl=uk")
     elif "лололошка" in text.lower():
@@ -55,7 +57,7 @@ def process_voice_command(text):
         webbrowser.open("https://www.wargaming.net/en")
     elif "github" in text.lower():
         webbrowser.open("https://github.com/")
-    elif "зз" in text.lower():
+    elif "windows" in text.lower():
         webbrowser.open("https://emupedia.net/beta/emuos/")
     elif "погода" in text.lower():
         place = text.lower()[7:]
@@ -65,7 +67,7 @@ def process_voice_command(text):
         weather2 = "температура (грфдусицельсий)" + str(int(weather.temperature("celsius")["temp"])) + "\n"
         print(weather2)
 
-
+# главна вунксия програми
 def main():
     # Получаем аудио с микрофона
     audio = voce_input()
